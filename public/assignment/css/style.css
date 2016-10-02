@@ -5,3 +5,52 @@ input.form-control {
 body {
     padding-top: 36px;
 }
+
+.navbar-custom {
+    color: #2e6da4 !important;
+    background-color: #337ab7 !important;
+}
+.navbar-custom-gray{
+	color: #A9A9A9 !important;
+	background-color: #F0F0F0 !important;
+}
+.navbar-custom-default{
+    color: #ffffff !important;
+    background-color: #ffffff !important;
+}
+.glyphy-custom-blue{
+	color: #2e6da4 !important;
+}
+.glyphy-custom-white{
+	color: #ffffff !important;
+}
+.glyphy-custom-black{
+	color: #000000 !important;
+}
+.nav-text-white{
+	color:#ffffff !important;
+}
+.nav-text-black{
+	color:#000000 !important;
+}
+.nav-text-gray{
+	color:#808080 !important;
+}
+.navbar-custom-brand {
+    float: left;
+    height: 50px;
+    padding: 15px 15px;
+    font-size: 18px;
+    line-height: 20px;
+    color:#ffffff !important;
+}
+.anchor-padding-top{
+	margin-top: 40px;
+}
+.anchor-padding{
+	margin-top: 20px;
+}
+.delete-button-color{
+	color:#ffffff;
+	background-color:#ff0000;
+}
