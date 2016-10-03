@@ -7,7 +7,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="css/style.css" rel="stylesheet"/>
 </head>
-<body class="content-scroll">
+<body>
 
 
 <nav class="navbar navbar-fixed-top navbar-custom-gray">
@@ -19,7 +19,7 @@
                 </span>
             </a>
             
-            <p class="nav-text-gray navbar-brand"><strong>Edit Page</strong></p>
+            <p class="nav-text-gray navbar-brand"><strong>Widget Edit</strong></p>
 
             <a href="#" class="navbar-text navbar-link pull-right">
                 <span class="glyphicon glyphicon-ok glyphy-custom-black">
@@ -35,8 +35,13 @@
         <form>
             <label for="inputName">Name</label>
             <input type="text" class="form-control" placeholder="Page Name" id="inputName">
-            <label for="inputTitle">Title</label>
-            <input type="text" class="form-control" placeholder="Page Title" id="inputTitle">
+            <label for="inputText">Text</label>
+            <textarea class="form-control" rows="1" placeholder="Page Title" id="inputText"></textarea>
+            <label for="inputURL">URL</label>
+            <input type="text" class="form-control" placeholder="https://youtu.be/uLWLashCXHE" id="inputURL">
+            <label for="inputWidth">Width</label>
+            <input type="text" class="form-control" placeholder="100%" id="inputWidth">
+            
             <button class="form-control anchor-padding btn btn-danger" id="delete">Delete</button>
         </form>
     </div>

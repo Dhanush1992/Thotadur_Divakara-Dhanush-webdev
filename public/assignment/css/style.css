@@ -47,10 +47,33 @@ body {
 .anchor-padding-top{
 	margin-top: 40px;
 }
+.anchor-padding-right{
+	padding-right: 10px;
+}
 .anchor-padding{
 	margin-top: 20px;
 }
 .delete-button-color{
 	color:#ffffff;
 	background-color:#ff0000;
+}
+
+.relative-position {
+    position: relative;
+}
+.absolute-position {
+    position: absolute;
+}
+.list-element-menu {
+    top: 0px;
+    right: 0px;
+    z-index: 10;
+    background-color: white;
+}
+.zero-right-padding {
+    padding-right: 0px;
+}
+.content-scroll{
+	padding-top: 40px;
+	padding-bottom: 40px;
 }
