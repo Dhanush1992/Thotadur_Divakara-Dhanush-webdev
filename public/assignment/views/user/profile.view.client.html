@@ -20,19 +20,19 @@
         <form>
             <div class="form-group anchor-padding-top">
                 <label for="username">Username</label>
-                <input type="text" value="jannunzi" class="form-control" id="username" placeholder="Username">
+                <input type="text" ng-model="model.user.username" value="jannunzi" class="form-control" id="username" placeholder="Username">
             </div>
             <div class="form-group anchor-padding">
                 <label for="email">Email address</label>
-                <input type="email" value="jannunzi@gmail.com" class="form-control" id="email" placeholder="alice@wonderland.com">
+                <input type="email" ng-model="model.user.emailID" value="jannunzi@gmail.com" class="form-control" id="email" placeholder="alice@wonderland.com">
             </div>
             <div class="form-group anchor-padding">
                 <label for="first-name">First Name</label>
-                <input type="text" value="Jose" class="form-control" id="first-name" placeholder="Alice">
+                <input type="text" ng-model="model.user.firstName" value="Jose" class="form-control" id="first-name" placeholder="Alice">
             </div>
             <div class="form-group anchor-padding">
                 <label for="last-name">Last Name</label>
-                <input type="text" value="Annunziato" class="form-control" id="last-name" placeholder="Wonderland">
+                <input type="text" ng-model="model.user.lastName" value="Annunziato" class="form-control" id="last-name" placeholder="Wonderland">
             </div>
         </form>
 

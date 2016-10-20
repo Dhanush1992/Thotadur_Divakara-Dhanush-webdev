@@ -65,9 +65,9 @@
         <div class="col-xs-12 col-sm-8 anchor-padding-top">
             <form>
                 <label for="inputName">Name</label>
-                <input type="text" class="form-control" placeholder="Name" id="inputName">
+                <input type="text" ng-model="model.website.name" class="form-control" placeholder="Name" id="inputName">
                 <label for="inputDescription">Description</label>
-                <textarea class="form-control" rows="7" placeholder="Description" id="inputDescription"></textarea>
+                <textarea class="form-control" ng-model="model.website.description" rows="7" placeholder="Description" id="inputDescription"></textarea>
             </form>
         </div>
     </div>
