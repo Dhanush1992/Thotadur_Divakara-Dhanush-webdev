@@ -36,7 +36,8 @@
             }
         }
 
-        function createWebsite(website) {
+        function createWebsite(userId,website) {
+            websites.developerId = userId;
             websites.push(website);
         }
 

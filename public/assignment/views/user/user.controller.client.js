@@ -66,19 +66,22 @@
         }
     }
 
+
     function ProfileController($routeParams, UserService) {
         var vm = this;
+        var params = $routeParams;
+        // console.log(params.uid);
+        vm.userId = parseInt(params['uid'])+"";
+        console.log(vm.userId);
+        var user = UserService.findUserById(vm.userId+"");
+
+        if(user != null) {
+            vm.user = user;
+        }
         vm.okayPressed = okayPressed;
-        vm.userId= parseInt($routeParams.uid);
-        function init() {
-            vm.user = UserService.findUserById(vm.userId);
-        }
-        init();
         function okayPressed() {
-            UserService.update()
+            UserService.updateUser(vm.userId,vm.user);
+            alert("Updated user details");
         }
-
-
-
     }
 })();

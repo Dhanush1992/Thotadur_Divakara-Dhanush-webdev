@@ -6,6 +6,10 @@
         .controller("EditPageController", EditPageController);
     function PageListController() {
         var vm = this;
+        vm.websiteId = $routeParams['wid'];
+        vm.userId = $routeParams['uid'];
+        function init(){}
+
     }
     function NewPageController() {
         var vm = this;

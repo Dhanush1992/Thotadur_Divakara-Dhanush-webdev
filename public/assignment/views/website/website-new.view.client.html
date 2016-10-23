@@ -3,13 +3,13 @@
     <div class="container-fluid">
 
         <div class="header">
-            <a href="website-list.view.client.html" class="navbar-text navbar-link pull-left">
+            <a href="#/user/{{model.userId}}/website" class="navbar-text navbar-link pull-left">
                 <span class="glyphicon glyphicon-chevron-left glyphy-custom-white">
                 </span>
             </a>
             <div class="col-sm-4 hidden-xs">
                 <p class="nav-text-white navbar-brand"><strong>Websites</strong></p>
-                <a href="#" class="navbar-text navbar-link pull-right">
+                <a href="#/user/{{model.userId}}/website/new" class="navbar-text navbar-link pull-right">
                     <span class="glyphicon glyphicon-plus glyphy-custom-white">
                     </span>
                 </a>
@@ -20,7 +20,7 @@
                 <p class="nav-text-white navbar-brand"><strong>New Website</strong></p>
             
             
-                <a href="website-list.view.client.html" class="navbar-text navbar-link pull-right">
+                <a ng-click="model.createWebsite(model.website.name,model.website.description)" class="navbar-text navbar-link pull-right">
                     <span class="glyphicon glyphicon-ok glyphy-custom-white">
                     </span>
                 </a>
@@ -32,30 +32,9 @@
 <div class="container">
     <div class="row">    
         <div class="col-xs-4 anchor-padding-top hidden-xs">
-            <div class="row anchor-padding">
-                <a href="../page/page-list.view.client.html">Address Book App</a>
-                <a href="website-edit.view.client.html" class="pull-right">
-                    <span class="glyphicon glyphicon-cog">
-                    </span>
-                </a>
-            </div>
-            <div class="row anchor-padding">
-                <a href="../page/page-list.view.client.html">Blogger</a>
-                <a href="website-edit.view.client.html" class="pull-right">
-                    <span class="glyphicon glyphicon-cog">
-                    </span>
-                </a>
-            </div>
-            <div class="row anchor-padding">
-                <a href="../page/page-list.view.client.html">Blogging App</a>
-                <a href="website-edit.view.client.html" class="pull-right">
-                    <span class="glyphicon glyphicon-cog">
-                    </span>
-                </a>
-            </div>
-            <div class="row anchor-padding">
-                <a href="../page/page-list.view.client.html">Script Testing App</a>
-                <a href="website-edit.view.client.html" class="pull-right">
+            <div ng-repeat="website in model.websites" class="row anchor-padding">
+                <a href="#/user/{{model.userId}}/website/{{website._id}}">{{website.name}}</a>
+                <a href="#/user/{{model.userId}}/website/{{website._id}}" class="pull-right">
                     <span class="glyphicon glyphicon-cog">
                     </span>
                 </a>
@@ -67,7 +46,7 @@
                 <label for="inputName">Name</label>
                 <input type="text" ng-model="model.website.name" class="form-control" placeholder="Name" id="inputName">
                 <label for="inputDescription">Description</label>
-                <textarea class="form-control" ng-model="model.website.description" rows="7" placeholder="Description" id="inputDescription"></textarea>
+                <textarea class="form-control" ng-model="model.website.description"  placeholder="Description" id="inputDescription"></textarea>
             </form>
         </div>
     </div>
@@ -78,7 +57,7 @@
 <nav class="navbar navbar-custom navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="header">
-            <a href="../user/profile.view.client.html" class="navbar-text pull-right">
+            <a href="#/user/{{model.user._id}}" class="navbar-text pull-right">
                 <span class="glyphicon glyphy-custom-white glyphicon-user">
                 </span>
             </a>
