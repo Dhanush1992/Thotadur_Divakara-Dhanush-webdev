@@ -23,6 +23,7 @@
             }
             return false;
         }
+
         function createUser(user) {
             users.push(user);
         }
@@ -32,16 +33,44 @@
         // }
         function findUserById(id) {
             for (var i =0;i<users.length;i++){
-                if(users[i]._id===id{
+                if(users[i]._id===id){
                     return users[i];
                 }
             }
             return false;
 
         }
-        function findUserByUsername(username){ }
-        function deleteUser(userId) { }
-        function updateUser() {
+
+        function findUserByUsername(username){
+            for (var i =0;i<users.length;i++){
+                if(users[i].username===username){
+                    return users[i];
+                }
+            }
+            return false;
+        }
+
+        function deleteUser(userId) {
+            users.forEach(function (result,index){
+               if(result["_id"]===userId){
+                   users.splice(index,i);
+               }
+            });
+
+        }
+
+        function updateUser(userId, user) {
+            for (var usr in users){
+                User = users[usr];
+                if(User._id === userId){
+                    User.firstName = user.firstName;
+                    User.lastName = user.lastName;
+                    User.username = user.username;
+
+                }
+
+            }
+
         }
         return api;
     }

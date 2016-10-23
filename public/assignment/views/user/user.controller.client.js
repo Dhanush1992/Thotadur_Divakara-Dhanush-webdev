@@ -3,7 +3,7 @@
         .module("WebAppMaker")
         .controller("LoginController", LoginController)
         .controller("RegisterController", RegisterController)
-        .controller("ProfileController", ProfileController)
+        .controller("ProfileController", ProfileController);
 
     function LoginController($location, UserService) {
         var vm = this;
@@ -19,10 +19,10 @@
         }
     }
 
-    function RegisterController() {
+    function RegisterController($location,UserService) {
         var vm = this;
         vm.register  = register;
-        function register(){
+        function register(username, password){
             if(!vm.username){
                 alert("Please enter the username you want to create");
             }
@@ -38,19 +38,27 @@
                     console.log("Passwords match");
 
                     var id = Math.floor(Math.random() * 999);
-                    x = UserService.findUserById(id);
-                    while(x == false) {
-                        id = Math.floor(Math.random() * 999);
-                        x = UserService.findUserById(id);
+                    var x = UserService.findUserById(id+"");
+                    while(true) {
+                        if(x == false) {
+                           break;
+                        }
+                        else{
+                            id = Math.floor(Math.random() * 999);
+                            x = UserService.findUserById(id+"");
+                        }
                     }
 
-                    id.toString();
+                    id = id.toString();
                     var newUser = {};
                     newUser._id = id;
-                    newUser.username = model.username;
+                    newUser.username = vm.username;
                     newUser.firstName = "";
                     newUser.lastName = "";
+                    vm.userId = newUser._id;
+                    vm.user = newUser;
                     UserService.createUser(newUser);
+                    $location.url("/user/" + newUser._id);
 
                 }
             }
@@ -60,11 +68,17 @@
 
     function ProfileController($routeParams, UserService) {
         var vm = this;
+        vm.okayPressed = okayPressed;
         vm.userId= parseInt($routeParams.uid);
         function init() {
             vm.user = UserService.findUserById(vm.userId);
         }
-
         init();
+        function okayPressed() {
+            UserService.update()
+        }
+
+
+
     }
 })();
