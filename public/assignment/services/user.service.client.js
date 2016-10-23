@@ -8,19 +8,42 @@
             {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia"  },
             {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" } ];
         var api = {
-            "createUser"   : "createUser",
-            "findUserById" : "findUserById",
-            "findUserByUsername" : "findUserByUsername",
-            "findUserByCredentials" : "findUserByCredentials",
-            "updateUser" : "updateUser",
-            "deleteUser" : "deleteUser"
-    };
-        return api;
-        function createUser(user) { }
-        function findUserById(id) { }
+            "createUser"   : createUser,
+            "findUserById" : findUserById,
+            "findUserByUsername" : findUserByUsername,
+            "findUserByCredentials" : findUserByCredentials,
+            "updateUser" : updateUser,
+            "deleteUser" : deleteUser
+        };
+        function findUserByCredentials(username, password) {
+            for (var i =0;i<users.length;i++){
+                if(users[i].username===username && users[i].password===password){
+                    return users[i];
+                }
+            }
+            return false;
+        }
+        function createUser(user) {
+            users.push(user);
+        }
+        // function notempty(val)
+        // {
+        //     return !(val == null|| val == undefined|| val == "");
+        // }
+        function findUserById(id) {
+            for (var i =0;i<users.length;i++){
+                if(users[i]._id===id{
+                    return users[i];
+                }
+            }
+            return false;
+
+        }
         function findUserByUsername(username){ }
-        function findUserByCredentials(username, password) { }
         function deleteUser(userId) { }
+        function updateUser() {
+        }
+        return api;
     }
 })();
 

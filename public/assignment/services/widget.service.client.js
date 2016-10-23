@@ -22,10 +22,10 @@
         };
         return api;
         function createWidget(pageId, widget){}
-        function findWidgetsByPageId(pageId){}
+        function findWidgetsByPageId(pageId){}//true or false , pageId missing, handle in controller
         function findWidgetById(widgetId){}
         function updateWidget(widgetId, widget){}
-        function deleteWidget(widgetId){}
+        function deleteWidget(widgetId){} //splice vs delete
 
     }
 })();
