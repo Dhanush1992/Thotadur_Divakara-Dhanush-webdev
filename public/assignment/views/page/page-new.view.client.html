@@ -3,14 +3,14 @@
     <div class="container-fluid">
 
         <div class="header">
-            <a href="page-list.view.client.html" class="navbar-brand navbar-link">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-brand navbar-link">
                 <span class="glyphicon glyphicon-chevron-left glyphy-custom-black">
                 </span>
             </a>
             
             <p class="nav-text-gray navbar-brand"><strong>New Page</strong></p>
 
-            <a href="page-list.view.client.html" class="navbar-text navbar-link pull-right">
+            <a ng-click="model.createPage(model.name, model.description)" class="navbar-text navbar-link pull-right">
                 <span class="glyphicon glyphicon-ok glyphy-custom-black">
                 </span>
             </a>
@@ -25,7 +25,7 @@
             <label for="inputName">Name</label>
             <input type="text" ng-model="model.page.name" class="form-control" placeholder="Page Name" id="inputName">
             <label for="inputTitle">Title</label>
-            <input type="text" ng-model="model.page.title" class="form-control" placeholder="Page Title" id="inputTitle">
+            <input type="text" ng-model="model.page.description" class="form-control" placeholder="Page Title" id="inputTitle">
         </form>
     </div>
 </div>
@@ -35,7 +35,7 @@
     <div class="container-fluid">
         <div class="navbar-footer">
             <p class="navbar-text">
-                <a href="../user/profile.view.client.html" class="navbar-custom-link pull-right">
+                <a href="#/user/{{model.userId}}" class="navbar-custom-link pull-right">
                     <span class="glyphicon glyphy-custom-blue glyphicon-user">
                     </span>
                 </a>

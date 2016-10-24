@@ -3,14 +3,14 @@
     <div class="container-fluid">
 
         <div class="header">
-            <a href="../website/website-list.view.client.html" class="navbar-brand navbar-link">
+            <a href="#/user/{{model.userId}}/website" class="navbar-brand navbar-link">
                 <span class="glyphicon glyphicon-chevron-left glyphy-custom-black">
                 </span>
             </a>
             
             <p class="nav-text-gray navbar-brand"><strong>Pages</strong></p>
 
-            <a href="page-new.view.client.html" class="navbar-text navbar-link pull-right">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new" class="navbar-text navbar-link pull-right">
                 <span class="glyphicon glyphicon-plus glyphy-custom-black">
                 </span>
             </a>
@@ -20,48 +20,12 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-xs-12 anchor-padding-top">
-            <a href="../widget/widget-list.view.client.html">Blog Post</a>
-            <a href="page-edit.view.client.html" class="pull-right">
+        <div ng-repeat="pg in model.pages" class="col-xs-12 anchor-padding-top">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{pg._id}}/widget">Blog Post</a>
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{pg._id}}" class="pull-right">
                 <span class="glyphicon glyphicon-cog">
                 </span>
             </a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 anchor-padding">
-            <a href="../widget/widget-list.view.client.html">Blogs</a>
-            <a href="page-edit.view.client.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog">
-                </span>
-            </a>
-        </div>
-    </div>
-    <div class="row">
-    <div class="col-xs-12 anchor-padding">
-            <a href="../widget/widget-list.view.client.html">Home</a>
-            <a href="page-edit.view.client.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog">
-                </span>
-            </a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 anchor-padding">
-            <a href="../widget/widget-list.view.client.html">About</a>
-            <a href="page-edit.view.client.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog">
-                </span>
-            </a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 anchor-padding">
-                <a href="../widget/widget-list.view.client.html">Contact Us</a>
-                <a href="page-edit" class="pull-right">
-                    <span class="glyphicon glyphicon-cog">
-                    </span>
-                </a>
         </div>
     </div>
 </div>
@@ -69,9 +33,9 @@
 
 <nav class="navbar navbar-custom-gray navbar-fixed-bottom">
     <div class="container-fluid">   
-        <a href="../user/profile.view.client.html" class="navbar-text pull-right">
-                    <span class="glyphicon glyphy-custom-blue glyphicon-user">
-                    </span>
-                </a>
+        <a href="#/user/{{model.userId}}" class="navbar-text pull-right">
+            <span class="glyphicon glyphy-custom-blue glyphicon-user">
+            </span>
+        </a>
     </div>
 </nav>

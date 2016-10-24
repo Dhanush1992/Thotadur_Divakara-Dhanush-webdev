@@ -54,7 +54,7 @@
                     return pages[p];
                 }
             }
-            return null;
+            return false;
         }
 
 

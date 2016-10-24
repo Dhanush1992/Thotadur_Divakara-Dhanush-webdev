@@ -13,19 +13,48 @@
                 "url": "https://youtu.be/AM2Ivdi9c4E" },
             { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}];
         var api = {
-            "createWidget" : "createWidget",
-            "findWidgetsByPageId" : "findWidgetsByPageId",
-            "findWidgetById" : "findWidgetById",
-            "updateWidget" : "updateWidget",
-            "deleteWidget" : "deleteWidget"
+            createWidget : createWidget,
+            findWidgetsByPageId : findWidgetsByPageId,
+            findWidgetById : findWidgetById,
+            updateWidget : updateWidget,
+            deleteWidget : deleteWidget
 
         };
         return api;
-        function createWidget(pageId, widget){}
-        function findWidgetsByPageId(pageId){}//true or false , pageId missing, handle in controller
-        function findWidgetById(widgetId){}
-        function updateWidget(widgetId, widget){}
-        function deleteWidget(widgetId){} //splice vs delete
+        function createWidget(pageId, widget){
+            widget.pageId = pageId;
+            widgets.push(widget);
+        }
+
+        function findWidgetsByPageId(pageId){
+            // TODO: iterate over array looking for widgets for the pid
+            var x = [];
+            for(var w in widgets){
+                if(widgets[w].pageId === pageId){
+                    x.push(widgets[w]);
+                }
+            }
+            return x;
+
+        }//true or false , pageId missing, handle in controller
+        function findWidgetById(widgetId){
+            for(var w in widgets) {
+                if(widgets[w]._id == widgetId) {
+                    return widgets[w];
+                }
+            }
+            return false;
+
+        }
+        function updateWidget(widgetId, widget){
+
+
+        }
+        function deleteWidget(widgetId){
+
+
+        } //splice vs delete
+
 
     }
 })();

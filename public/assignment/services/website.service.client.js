@@ -47,7 +47,7 @@
                     return websites[w];
                 }
             }
-            return null;
+            return false;
         }
 
         function findWebsitesForUser(uid) {

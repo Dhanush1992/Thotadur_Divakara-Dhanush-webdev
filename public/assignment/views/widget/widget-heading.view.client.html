@@ -3,12 +3,19 @@
     <div class="container-fluid">
 
         <div class="header">
-            <a href="widget-list.view.client.html" class="navbar-brand navbar-link">
+            <a href="#/user/{{model.userId}}/website/{{model.widgetId}}/page/{{model.pageId}}/widget class="navbar-brand navbar-link">
                 <span class="glyphicon glyphicon-chevron-left glyphy-custom-black">
                 </span>
             </a>
-            
-            <p class="nav-text-gray navbar-brand"><strong>Edit Page</strong></p>
+
+            <div ng-switch ="model.widget._id">
+                <div ng-switch-when="undefined" class="navbar-brand">
+                    New Widget
+                </div>
+                <div ng-switch-default class="navbar-brand">
+                    Edit Widget
+                </div>
+            </div>
 
             <a href="widget-list.view.client.html" class="navbar-text navbar-link pull-right">
                 <span class="glyphicon glyphicon-ok glyphy-custom-black">
@@ -38,7 +45,7 @@
     <div class="container-fluid">
         <div class="navbar-footer">
             <p class="navbar-text">
-                <a href="../user/profile.view.client.html" class="navbar-custom-link pull-right">
+                <a href="#/user/{{model.uid}}" class="navbar-custom-link pull-right">
                     <span class="glyphicon glyphy-custom-blue glyphicon-user">
                     </span>
                 </a>

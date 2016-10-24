@@ -15,35 +15,49 @@
     function NewWebsiteController($location,$routeParams,WebsiteService) {
         var vm = this;
         vm.userId = parseInt($routeParams["uid"]);
-        vm.createWebsite = createWebsite;
+        vm.createNewWebsite = createNewWebsite;
         function init(){
             vm.websites = WebsiteService.findWebsitesForUser(vm.userId+"");
         }
         init();
-        function createWebsite(name,description){
+        function createNewWebsite(name,description){
             if((name == null)||(description == null)){
                 alert("Cannot create a website with an empty name/description");
             }else{
 
                 var id = Math.floor(Math.random() * 999);
-                var x = UserService.findWebsiteById(id+"");
+                var x = WebsiteService.findWebsiteById(id+"");
                 while(true) {
                     if(x == false) {
                         break;
                     }
                     else{
                         id = Math.floor(Math.random() * 999);
-                        x = UserService.findWebsiteById(id+"");
+                        x = WebsiteService.findWebsiteById(id+"");
                     }
                 }
 
                 id = id.toString();
-                var newWebsite = {
-                    "name":name,
-                    "description":description;
-                    "websiteId":id
-                };
-                WebsiteService.createWebsite(vm.userId+"",);
+                var newWebsite = {};
+                newWebsite._id = id;
+                newWebsite.name = name;
+                newWebsite.developerId = vm.userId;
+                newWebsite.description = description;
+                vm.websiteId = newWebsite._id;
+                vm.website = newWebsite;
+                // { "_id": "234", "name": "Tweeter",     "developerId": "456", "description": "Lorem" }
+                //
+                // var newUser = {};
+                // newUser._id = id;
+                // newUser.username = vm.username;
+                // newUser.firstName = "";
+                // newUser.lastName = "";
+                // vm.userId = newUser._id;
+                // vm.user = newUser;
+                // {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  }
+
+
+                WebsiteService.createWebsite(vm.userId+"",newWebsite);
                 $location.url("/user/"+vm.userId+"/website");
             }
 
@@ -52,7 +66,7 @@
     }
     function EditWebsiteController($routeParams,WebsiteService) {
         var vm = this;
-        vm.websiteId = $routeParams["websiteID"];
+        vm.websiteId = $routeParams["wid"];
         vm.userId = $routeParams["uid"];
 
         function init() {
