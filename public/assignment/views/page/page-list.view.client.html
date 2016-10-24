@@ -21,7 +21,7 @@
 <div class="container">
     <div class="row">
         <div ng-repeat="pg in model.pages" class="col-xs-12 anchor-padding-top">
-            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{pg._id}}/widget">Blog Post</a>
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{pg._id}}/widget">{{pg.name}}</a>
             <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{pg._id}}" class="pull-right">
                 <span class="glyphicon glyphicon-cog">
                 </span>

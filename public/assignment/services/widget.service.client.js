@@ -47,11 +47,19 @@
 
         }
         function updateWidget(widgetId, widget){
-
+            for(var w in widgets) {
+                if (widgets[w]._id === widgetId) {
+                    widgets[w] = widget;
+                }
+            }
 
         }
         function deleteWidget(widgetId){
-
+            widgets.forEach(function (result, index) {
+                if (result["_id"] === widgetId) {
+                    widgets.splice(index, 1);
+                }
+            });
 
         } //splice vs delete
 
