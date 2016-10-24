@@ -77,3 +77,35 @@ body {
 	padding-top: 40px;
 	padding-bottom: 40px;
 }
+
+.widget-edit-parent
+{
+    position:relative;
+}
+
+.widget-edit-child
+{
+    position:absolute;
+    right:0;
+    top:0;
+    padding: 0px 0 5px 5px;
+    background: white;
+    border-radius: 0 0 0 7px;
+}
+
+img.media-style {
+    width: 100%;
+}
+
+.split-style
+{
+    float:right;
+}
+
+.widget-cog-style {
+    padding-right: 15px;
+}
+
+.right-cog-style {
+    padding-right:15px;
+}

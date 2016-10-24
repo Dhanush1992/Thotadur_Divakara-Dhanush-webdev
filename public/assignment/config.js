@@ -73,21 +73,34 @@
                 controllerAs: "model"
 
             })
-            .when("/user/:uid/website/:wid/page/:pid/widget/widget-heading",{
-                templateUrl : "views/widget/widget-heading.view.client.html",
-                controller: "EditWidgetController",
+            .when("/user/:uid/website/:wid/page/:pid/widget/widget-header",{
+                templateUrl : "views/widget/widget-header.view.client.html",
+                controller: "NewWidgetController",
                 controllerAs: "model"
             })
             .when("/user/:uid/website/:wid/page/:pid/widget/widget-image",{
-                templateUrl : "views/widget/widget-image.view.client.html"
+                templateUrl : "views/widget/widget-image.view.client.html",
+                controller: "NewWidgetController",
+                controllerAs: "model"
 
             })
             .when("/user/:uid/website/:wid/page/:pid/widget/widget-youtube",{
-                templateUrl : "views/widget/widget-youtube.view.client.html"
+                templateUrl : "views/widget/widget-youtube.view.client.html",
+                controller: "NewWidgetController",
+                controllerAs: "model"
 
             })
+            .when("/user/:uid/website/:wid/page/:pid/widget/:wgid",{
+                templateUrl : "views/widget/widget-edit.view.client.html",
+                controller: "EditWidgetController",
+                controllerAs: "model"
+
+            })
+
             .otherwise({
-                redirectTo: "/login"
+                redirectTo: "/login",
+                controller: "LoginController",
+                controllerAs: "model"
             });
     }
 })();

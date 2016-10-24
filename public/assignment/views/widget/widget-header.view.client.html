@@ -1,10 +1,9 @@
 
 <nav class="navbar navbar-fixed-top navbar-custom-gray">
     <div class="container-fluid">
-
-        <div class="header">
-            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget class="navbar-brand navbar-link">
-                <span class="glyphicon glyphicon-chevron-left glyphy-custom-black">
+        <div class="col-sm-12">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-brand navbar-link">
+            <span class="glyphicon glyphicon-chevron-left glyphy-custom-black">
                 </span>
             </a>
 
@@ -17,7 +16,7 @@
                 </div>
             </div>
 
-            <a ng-click="" class="navbar-text navbar-link pull-right">
+            <a ng-click="model.HeadingWidget()" class="navbar-text navbar-link pull-right">
                 <span class="glyphicon glyphicon-ok glyphy-custom-black">
                 </span>
             </a>
@@ -26,16 +25,18 @@
 </nav>
 
 <div class="container">
-    
+
     <div class="anchor-padding-top">
         <form>
             <label for="inputName">Name</label>
-            <input type="text" class="form-control" placeholder="Page Name" id="inputName">
+            <input type="text" ng-model="model.widget.name" class="form-control" placeholder="Widget Name" id="inputName">
             <label for="inputText">Text</label>
-            <textarea class="form-control" rows="1" placeholder="Page Title" id="inputText">US Senate Reaches Compromise on Emergency</textarea>
+            <textarea class="form-control" ng-model="model.widget.text" rows="1" placeholder="Page Title" id="inputText">US Senate Reaches Compromise on Emergency</textarea>
             <label for="inputSize">Size</label>
-            <input type="text" value="3" class="form-control" id="inputSize">
-            <a href="widget-list.view.client.html" class="form-control anchor-padding btn btn-danger" id="delete">Delete</a>
+            <input type="text" ng-model="model.widget.size"  class="form-control" id="inputSize">
+            <div ng-if="model.widget._id">
+                <a ng-click="model.deleteWidget()" class="form-control anchor-padding btn btn-danger" id="delete">Delete</a>
+            </div>
         </form>
     </div>
 </div>

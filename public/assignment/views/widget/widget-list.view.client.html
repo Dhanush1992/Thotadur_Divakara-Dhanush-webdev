@@ -1,66 +1,59 @@
 
 <nav class="navbar navbar-fixed-top navbar-custom-gray">
     <div class="container-fluid">
-
-        <div class="header">
-            <a href="../page/page-list.view.client.html" class="navbar-brand navbar-link">
+        <div class="col-sm-12">
+            <div class="header">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-brand navbar-link">
                 <span class="glyphicon glyphicon-chevron-left glyphy-custom-black">
                 </span>
-            </a>
-            
-            <p class="nav-text-gray navbar-brand"><strong>Pages</strong></p>
+                </a>
 
-            <a href="widget-chooser.view.client.html" class="navbar-text navbar-link pull-right">
+                <p class="nav-text-gray navbar-brand"><strong>Widgets</strong></p>
+
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new" class="navbar-text navbar-link pull-right">
                 <span class="glyphicon glyphicon-plus glyphy-custom-black">
                 </span>
-            </a>
+                </a>
+            </div>
         </div>
     </div>
 </nav>
+<br/>
 
-<div class="container">
-    <div class="list-group anchor-padding-top">
-        <div class="relative-position">
-            <div class="container-fluid zero-right-padding">
-                <h1>The greatest Premier league Manager</h1>
-                <p>Some call him the greatest coach in history. Before retiring in May 2013, Sir Alex Ferguson spent 26 seasons as the manager of Manchester United, the English football (soccer) club that ranks among the most successful and valuable franchises in sports. During that time the club won 13 English league titles along with 25 other domestic and international trophies—giving him an overall haul nearly double that of the next-most-successful English club manager. And Ferguson was far more than a coach. He played a central role in the United organization, managing not just the first team but the entire club. “Steve Jobs was Apple; Sir Alex Ferguson is Manchester United,” says the club’s former chief executive David Gill.</p>
-            </div>
-            <div class="absolute-position list-element-menu zero-right-padding">
-                <a href="widget-heading.view.client.html"><span class="glyphicon glyphicon-cog"></span></a>
-                <a href="#"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
-            </div>
-        </div>
-        <div class="relative-position">
-            <div class="container-fluid zero-right-padding">
-                <img class="img-responsive" src="https://upload.wikimedia.org/wikipedia/commons/1/14/Alex_Ferguson.jpg" alt="Sample Image"/>
-                <div class="container-fluid zero-right-padding anchor-padding">
-                <p>Some of the reasons that led to his immense success summarized by Sir Alex himself at the Harvard Buisness School:<br>
-                <b>1. Start with the Foundation<br>
-                2. Dare to Rebuild Your Team<br>
-                3. Set High Standards—and Hold Everyone to Them<br>
-                4. Never, Ever Cede Control<br>
-                5. Match the Message to the Moment<br>
-                6. Prepare to Win<br>
-                7. Rely on the Power of Observation<br>
-                8. Never Stop Adapting</b></p>
-                <h2>Sir Alex's methodologies deciphered</h2>
-            </div>
-            </div>
-            <div class="absolute-position list-element-menu zero-right-padding">
-                <a href="widget-image.view.client.html"><span class="glyphicon glyphicon-cog"></span></a>
-                <a href="#"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
-            </div>
-        </div>
-        <div class="relative-position">
-            <div class="container-fluid zero-right-padding anchor-padding">
-                <iframe width="100%" height="auto" src="https://www.youtube.com/embed/GLUuKSUqieQ" frameborder="0" allowfullscreen></iframe>
-            </div>
-            <div class="absolute-position list-element-menu zero-right-padding">
-                <a href="widget-youtube.view.client.html"><span class="glyphicon glyphicon-cog"></span></a>
-                <a href="#"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+<div class="row">
+    <div class="container">
+        <div class="col-sm-12 widget-edit-parent" >
+            <div ng-switch="widget.widgetType"
+                 ng-repeat="widget in model.widgets" class="widget-edit-parent">
+                <div>
+                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}" class="widget-edit-child">
+                        <span class="glyphicon glyphicon-cog pull-right"></span>
+                        <span class="glyphicon glyphicon-menu-hamburger pull-right"></span>
+                    </a>
+                </div>
+
+                <div ng-switch="widget.size" ng-switch-when="HEADER">
+                    <h1 ng-switch-when="1">{{widget.text}}</h1>
+                    <h2 ng-switch-when="2">{{widget.text}}</h2>
+                    <h3 ng-switch-when="3">{{widget.text}}</h3>
+                    <h4 ng-switch-when="4">{{widget.text}}</h4>
+                    <h5 ng-switch-when="5">{{widget.text}}</h5>
+                    <h6 ng-switch-when="6">{{widget.text}}</h6>
+                </div>
+                <div ng-switch-when="YOUTUBE" class="media-style">
+                    <iframe width="100%" height="315"
+                            ng-src="{{model.checkSafeYouTubeUrl(widget.url)}}"
+                            frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div ng-switch-when="IMAGE" >
+                    <img ng-src = "{{widget.url}}" class="media-style"/>
+                </div>
+                <div ng-switch-when="HTML" ng-bind-html="model.checkSafeHtml(widget.text)">
+                </div>
             </div>
         </div>
     </div>
+
 </div>
 
             
@@ -68,17 +61,14 @@
 
 <nav class="navbar navbar-custom-gray navbar-fixed-bottom">
     <div class="container-fluid">
-                 <a href="#" class="navbar-text pull-left">
-                    <span class="glyphicon glyphy-custom-black glyphicon-play anchor-padding-right">
-                    </span>
-                </a>
-                <a href="#" class="navbar-text pull-left">
-                    <span class="glyphicon glyphy-custom-black glyphicon-eye-open">
-                    </span>
-                </a>       
-        <a href="../user/profile.view.client.html" class="navbar-text pull-right">
-                    <span class="glyphicon glyphy-custom-blue glyphicon-user">
-                    </span>
-                </a>
+        <a href="" class="navbar-text pull-left">
+            <span class="glyphicon glyphy-custom-black glyphicon-play anchor-padding-right"></span>
+        </a>
+        <a href="" class="navbar-text pull-left">
+            <span class="glyphicon glyphy-custom-black glyphicon-eye-open"></span>
+        </a>
+        <a href="#/user/{{model.userId}}" class="navbar-text pull-right">
+            <span class="glyphicon glyphy-custom-blue glyphicon-user"></span>
+        </a>
     </div>
 </nav>
