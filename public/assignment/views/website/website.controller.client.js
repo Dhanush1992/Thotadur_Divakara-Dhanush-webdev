@@ -20,6 +20,7 @@
             vm.websites = WebsiteService.findWebsitesForUser(vm.userId+"");
         }
         init();
+
         function createNewWebsite(name,description){
             if((name == null)||(description == null)){
                 alert("Cannot create a website with an empty name/description");
@@ -45,17 +46,6 @@
                 newWebsite.description = description;
                 vm.websiteId = newWebsite._id;
                 vm.website = newWebsite;
-                // { "_id": "234", "name": "Tweeter",     "developerId": "456", "description": "Lorem" }
-                //
-                // var newUser = {};
-                // newUser._id = id;
-                // newUser.username = vm.username;
-                // newUser.firstName = "";
-                // newUser.lastName = "";
-                // vm.userId = newUser._id;
-                // vm.user = newUser;
-                // {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  }
-
 
                 WebsiteService.createWebsite(vm.userId+"",newWebsite);
                 $location.url("/user/"+vm.userId+"/website");

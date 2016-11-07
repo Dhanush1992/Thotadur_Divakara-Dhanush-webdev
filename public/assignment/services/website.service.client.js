@@ -4,12 +4,7 @@
         .factory("WebsiteService", WebsiteService);
 
     function WebsiteService($http) {
-        var websites = [ { "_id": "123", "name": "Facebook",    "developerId": "456", "description": "Lorem" },
-            { "_id": "234", "name": "Tweeter",     "developerId": "456", "description": "Lorem" },
-            { "_id": "456", "name": "Gizmodo",     "developerId": "456", "description": "Lorem" },
-            { "_id": "567", "name": "Tic Tac Toe", "developerId": "123", "description": "Lorem" },
-            { "_id": "678", "name": "Checkers",    "developerId": "123", "description": "Lorem" },
-            { "_id": "789", "name": "Chess",       "developerId": "234", "description": "Lorem" } ];
+
 
         var api = {
             findWebsitesForUser: findWebsitesForUser,
@@ -29,35 +24,25 @@
         }
 
         function updateWebsite(website) {
-            for (var w in websites) {
-                if (websites[w]._id === website._id) {
-                    websites[w] = website;
-                }
-            }
+            var url = "/api/website/"+website._id;
+            return $http.put(url,website);
         }
 
         function createWebsite(userId,website) {
             websites.developerId = userId;
-            websites.push(website);
+            var url = "/api/user/"+userId+"/website";
+            return $http.put(url,website);
+
         }
 
         function findWebsiteById(wid) {
-            for (var w in websites) {
-                if (websites[w]._id === wid) {
-                    return websites[w];
-                }
-            }
-            return false;
+            var url = "/api/website/"+wid;
+            return $http.get(url);
         }
 
         function findWebsitesForUser(uid) {
-            var result = [];
-            for(var w in websites) {
-                if(websites[w].developerId === uid) {
-                    result.push(websites[w]);
-                }
-            }
-            return result;
+            var url = "/api/user/"+uid+"/website";
+            return $http.get(url);
 
         }
     }

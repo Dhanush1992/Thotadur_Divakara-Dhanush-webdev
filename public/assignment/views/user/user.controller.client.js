@@ -8,14 +8,24 @@
     function LoginController($location, UserService) {
         var vm = this;
         vm.login = login;
+
         function login() {
-            console.log(UserService);
-            user = UserService.findUserByCredentials(vm.username,vm.password);
-            if(user) {
-                $location.url("/user/" + user._id);
-            } else {
-                alert("Username/Password not found")
-            }
+            UserService
+                .findUserByCredentials(vm.username,vm.password)
+                .success(function (user) {
+                    if(user == '0')
+                    {
+                        alert("user not found");
+                    }
+                    else
+                    {
+                        $location.url("/user/" + user._id); // username password not found,match
+                    }
+
+                })
+                .error(function () {
+                    alert("Username/Password not found");
+                });
         }
     }
 
@@ -36,29 +46,25 @@
             else{
                 if(vm.verifyPassword == vm.password){
                     console.log("Passwords match");
-
-                    var id = Math.floor(Math.random() * 999);
-                    var x = UserService.findUserById(id+"");
-                    while(true) {
-                        if(x == false) {
-                           break;
-                        }
-                        else{
-                            id = Math.floor(Math.random() * 999);
-                            x = UserService.findUserById(id+"");
-                        }
-                    }
-
-                    id = id.toString();
                     var newUser = {};
-                    newUser._id = id;
+                    //newUser._id = id;
                     newUser.username = vm.username;
                     newUser.firstName = "";
                     newUser.lastName = "";
-                    vm.userId = newUser._id;
-                    vm.user = newUser;
-                    UserService.createUser(newUser);
-                    $location.url("/user/" + newUser._id);
+                    newUser.password = vm.password;
+                    //vm.userId = newUser._id;
+                    //vm.user = newUser;
+                    UserService
+                        .createUser(newUser)
+                        .success(function (userObj) {
+
+                            vm.user = userObj;
+                            vm.userId = userObj._id;
+                            $location.url("/user/" + userObj._id);
+                        })
+                        .error(function () {
+                            //handle this
+                        })
 
                 }
             }
@@ -80,8 +86,15 @@
         }
         vm.okayPressed = okayPressed;
         function okayPressed() {
-            UserService.updateUser(vm.userId,vm.user);
-            alert("Updated user details");
+            UserService
+                .updateUser(vm.userId,vm.user)
+                .success(function(){
+                    alert("Updated user details");
+                })
+                .error(function (){
+
+                });
+
         }
     }
 })();
