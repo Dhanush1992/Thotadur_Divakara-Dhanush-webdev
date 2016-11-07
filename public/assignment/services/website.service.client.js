@@ -16,11 +16,9 @@
         return api;
 
         function deleteWebsite(websiteId) {
-            websites.forEach(function(result,index){
-                if(result["_id"] === websiteId){
-                    websites.splice(index,1);
-                }
-            });
+            var url = "/api/website/"+websiteId;
+            return $http.delete(url);
+
         }
 
         function updateWebsite(website) {
@@ -29,9 +27,9 @@
         }
 
         function createWebsite(userId,website) {
-            websites.developerId = userId;
+            website.developerId = userId;
             var url = "/api/user/"+userId+"/website";
-            return $http.put(url,website);
+            return $http.post(url,website);
 
         }
 

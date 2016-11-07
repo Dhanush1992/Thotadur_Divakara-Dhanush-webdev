@@ -64,7 +64,7 @@
                         })
                         .error(function () {
                             //handle this
-                        })
+                        });
 
                 }
             }

@@ -24,15 +24,37 @@ module.exports = function (app) {
             if (websites[w]._id === website._id) {
                 websites[w] = website;
                 res.send('200');
+                return;
             }
         }
         res.send('0');
     }
 
+    function deleteWebsite(req,res){
+
+        console.log("here");
+        var websiteId = req.params.websiteId;
+        websites.forEach(function(result,index){
+            if(result["_id"] === websiteId){
+                websites.splice(index,1);
+            }
+        })
+
+        for(var i in websites)
+        {
+            if(websites[i]._id === websiteId)
+            {
+                websites.splice(index,1);
+
+            }
+        }
+        res.send(200);
+    }
+
     function createWebsite(req,res){
 
         var website = req.body;
-        var newWebsiteName = website.username;
+        var newWebsiteName = website.name;
         var id = (new Date().getTime()).toString();
 
         for(var wb in websites)
@@ -45,7 +67,7 @@ module.exports = function (app) {
         }
         website._id = id;
         websites.push(website);
-        res.send('200');
+        res.send(websites);
     }
 
     function findWebsiteById(req,res) {
@@ -68,8 +90,9 @@ module.exports = function (app) {
                 result.push(websites[w]);
             }
         }
-        if(result.count > 0){
-            res.send(result);
+        if(result.length > 0){
+            //res.send(result);
+            res.json(result);
             return;
         }
 
