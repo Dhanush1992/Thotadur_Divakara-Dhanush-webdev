@@ -16,6 +16,7 @@ module.exports = function (app) {
     function updateUser(req,res){
         var userObj = req.body;
 
+
         var currentUserId = userObj._id;
 
         for (var usr in users){

@@ -30,7 +30,6 @@
             website.developerId = userId;
             var url = "/api/user/"+userId+"/website";
             return $http.post(url,website);
-
         }
 
         function findWebsiteById(wid) {

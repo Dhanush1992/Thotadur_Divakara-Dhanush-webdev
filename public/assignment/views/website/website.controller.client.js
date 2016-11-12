@@ -16,7 +16,7 @@
                 })
                 .error(function () {
 
-                })
+                });
 
             //vm.websites = WebsiteService.findWebsitesForUser(vm.userId);
         }
@@ -24,46 +24,38 @@
     }
     function NewWebsiteController($location,$routeParams,WebsiteService) {
         var vm = this;
-        vm.userId = parseInt($routeParams["uid"]);
+        vm.userId = $routeParams["uid"];
         vm.createNewWebsite = createNewWebsite;
         function init(){
 
             WebsiteService
-                .findWebsitesForUser(vm.userId+"")
+                .findWebsitesForUser(vm.userId)
                 .success(function (websites) {
                     console.log(websites);
                     vm.websites = websites;
                 })
                 .error(function () {
 
-                })
+                });
         }
         init();
 
-        function createNewWebsite(name,description){
-            if((name == null)||(description == null)){
-                alert("Cannot create a website with an empty name/description");
-            }else{
-
-                //id = id.toString();
-                var newWebsite = {};
-                //newWebsite._id = id;
-                newWebsite.name = name;
-                newWebsite.developerId = vm.userId;
-                newWebsite.description = description;
-                WebsiteService
-                    .createWebsite(vm.userId,newWebsite)
-                    .success(function (website) {
-
-                        vm.website = website;
-                        vm.websiteId = website._id;
-                        $location.url("/user/"+vm.userId+"/website");
-                    })
-                    .error(function () {
-                        //handle this
-                    });
-
-            }
+        function createNewWebsite(){
+            //id = id.toString();
+            var newWebsite = {};
+            //newWebsite._id = id;
+            // newWebsite.name = name;
+            //newWebsite.developerId = vm.userId;
+            // newWebsite.description = description;
+            WebsiteService
+                .createWebsite(vm.userId,vm.website)
+                //.success(function (website){
+                .success(function (){
+                    $location.url("/user/"+vm.userId+"/website");
+                })
+                .error(function () {
+                    //handle this
+                });
 
         }
 
@@ -76,7 +68,7 @@
         function init() {
 
             WebsiteService
-                .findWebsiteById(vm.websiteId+"")
+                .findWebsiteById(vm.websiteId)
                 .success(function (website) {
                     vm.website = website;
                 })
