@@ -79,7 +79,7 @@ module.exports = function (app) {
         {
             if(pages[i]._id === pageId)
             {
-                pages.splice(index,1);
+                pages.splice(i,1);
 
             }
         }
