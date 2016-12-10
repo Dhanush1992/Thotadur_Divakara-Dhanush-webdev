@@ -45,67 +45,109 @@ module.exports = function (app) {
         return x[index];
     }
 
-    function findWidgetById(req,res){
+
+    function findWidgetById(req, res) {
         var widgetId = req.params.widgetId;
-        for(var w in widgets) {
-            if(widgets[w]._id == widgetId) {
-
-                res.send(widgets[w]);
-                return;
-            }
-        }
-        res.send('0');
-
+        model
+            .widgetModel
+            .findWidgetById(widgetId)
+            .then(
+                function (widget) {
+                    if(widget) {
+                        res.send(widget);
+                    }
+                    else {
+                        res.send('0');
+                    }
+                },
+                function (error) {
+                    res.sendStatus(400).send(error);
+                }
+            );
     }
 
     function findWidgetsByPageId(req,res){
         var pageId = req.params.pageId;
-        var x = [];
-        for(var w in widgets){
-            if(widgets[w].pageId === pageId){
-                x.push(widgets[w]);
-            }
-        }
-
-        res.json(x);
-
+        model
+            .pageModel
+            .findAllWidgetsForPage(pageId)
+            .then(
+                function (widgets) {
+                    if(widgets) {
+                        res.send(widgets);
+                    }
+                    else {
+                        res.send('0');
+                    }
+                },
+                function (error) {
+                    res.sendStatus(400).send(error);
+                }
+            );
     }
 
-    function createWidget(req,res){
-        var widget = req.body;
+    function createWidget(req, res) {
         var pageId = req.params.pageId;
-        widget.pageId = pageId;
-        widgets.push(widget);
-        res.send(widgets);
-    }
-
-    function updateWidget(req,res){
         var widget = req.body;
-        var widgetId = widget._id;
-        for(var w in widgets) {
-            if (widgets[w]._id === widgetId) {
-                widgets[w] = widget;
-                res.send('200');
-                return;
-            }
-        }
-        res.send('0');
+        model
+            .widgetModel
+            .createWidget(pageId, widget)
+            .then(
+                function (widget) {
+                    if(widget) {
+                        res.send(widget);
+                    }
+                    else {
+                        res.send('0');
+                    }
 
+                },
+                function (error) {
+                    res.sendStatus(400).send(error);
+                }
+            );
     }
 
-    function deleteWidget(req,res){
+    function updateWidget(req, res) {
         var widgetId = req.params.widgetId;
-        for(var i in widgets)
-        {
-            if(widgets[i]._id === widgetId)
-            {
-                widgets.splice(i,1);
-                res.send('200');
-                return;
-            }
-        }
+        var widget = req.body;
+        model
+            .widgetModel
+            .updateWidget(widgetId, widget)
+            .then(
+                function (status) {
+                    if(status) {
+                        res.send(200);
+                    }
+                    else {
+                        res.send('0');
+                    }
+                },
+                function (error) {
+                    res.sendStatus(400).send(error);
+                }
+            );
+    }
 
-        res.send('0');
+    function deleteWidget(req, res) {
+        var widgetId = req.params.widgetId;
+        model
+            .widgetModel
+            .deleteWidget(widgetId)
+            .then(
+                function (status) {
+                    if(status) {
+                        res.send(200);
+                    }
+                    else {
+                        res.send('0');
+                    }
+                },
+                function (error) {
+                    res.sendStatus(400).send(error);
+
+                }
+            );
     }
 
 }
