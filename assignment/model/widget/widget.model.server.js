@@ -13,7 +13,6 @@ module.exports = function () {
         findWidgetById: findWidgetById,
         updateWidget: updateWidget,
         deleteWidget: deleteWidget,
-        reorderWidget: reorderWidget,
         setModel: setModel
 
     };

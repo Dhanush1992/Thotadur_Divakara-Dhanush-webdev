@@ -2,7 +2,7 @@
  * Created by dhanush on 11/6/16.
  */
 
-module.exports = function (app) {
+module.exports = function (app,model) {
 
     var websites = [
         { _id: "123", name: "Facebook",    developerId: "456", description: "Lorem" },
@@ -100,7 +100,7 @@ module.exports = function (app) {
         console.log(uid);
         model
             .websiteModel
-            .findAllWebsitesForUser(uid)
+            .findWebsitesForUser(uid)
             .then(
                 function (websites) {
                     if(websites) {

@@ -13,7 +13,7 @@ module.exports = function () {
         updateUser: updateUser,
         findUserByCredentials: findUserByCredentials,
         findUserByUsername: findUserByUsername,
-        findAllWebsitesForUser: findAllWebsitesForUser,
+        findWebsitesForUser: findWebsitesForUser,
         removeUser: removeUser,
         setModel: setModel
     };
@@ -25,7 +25,7 @@ module.exports = function () {
     }
 
 
-    function findAllWebsitesForUser(userId) {
+    function findWebsitesForUser(userId) {
         return UserModel
             .findById(userId)
             .populate("websites", "name")

@@ -3,7 +3,7 @@
  */
 module.exports = function () {
     var mongoose = require('mongoose');
-    mongoose.connect('mongodb://localhost:27017/WebAppMaker');
+    mongoose.connect('mongodb://d92:123@ds127998.mlab.com:27998/db92webdev');
 
     var userModel = require("./user/user.model.server")();
     var websiteModel = require("./website/website.model.server")();

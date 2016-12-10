@@ -1,7 +1,7 @@
 /**
  * Created by dhanush on 11/6/16.
  */
-module.exports = function (app) {
+module.exports = function (app,model) {
     var users = [ {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
         {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
         {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia"  },
@@ -60,7 +60,7 @@ module.exports = function (app) {
             .then(
                 function (users) {
                     if(users) {
-                        res.json(users[0]);
+                        res.json(users);
                     } else {
                         res.send('0');
                     }
@@ -72,7 +72,7 @@ module.exports = function (app) {
     }
 
     function findUserById(req, res) {
-        var userId = req.params.uid;
+        var userId = req.params.userId;
         model
             .userModel
             .findUserById(userId)
