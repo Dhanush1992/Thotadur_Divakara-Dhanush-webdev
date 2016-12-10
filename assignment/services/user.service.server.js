@@ -13,82 +13,96 @@ module.exports = function (app) {
     app.get("/api/user",findUserByUsername);
     app.put("/api/user/:userId",updateUser);
 
-    function updateUser(req,res){
-        var userObj = req.body;
-
-
-        var currentUserId = userObj._id;
-
-        for (var usr in users){
-
-                if(users[usr]._id === currentUserId){
-                    users[usr] = userObj;
-                    res.send('200');
-                    return;
+    function updateUser(req, res) {
+        var user = req.body;
+        var uid = req.params.uid;
+        model
+            .userModel
+            .updateUser(uid, user)
+            .then(
+                function (status) {
+                    res.send(200);
+                },
+                function (error) {
+                    res.sendStatus(400).send(error);
                 }
-
-        }
-        res.send('0');
-
+            );
     }
 
-    function findUserByUsername(req,res){
+    function findUserByUsername(req, res)
+    {
         var username = req.query.username;
 
-        for (var i =0;i<users.length;i++){
-            if(users[i].username===username){
-                res.send(users[i]);
-                return;
-            }
-        }
-        res.send('0');
+        model
+            .userModel
+            .findUserByUsername(username)
+            .then(
+                function (users) {
+                    if(users){
+                        res.json(users[0]);
+                    }
+                    else{
+                        res.send('0');
+                    }
+                },
+                function (error) {
+                    res.sendStatus(400).send(error);
+                }
+            );
     }
 
-    function findUserByCredentials(req,res){
+    function findUserByCredentials(req, res) {
         var username = req.query.username;
         var password = req.query.password;
-        console.log(username,password);
-
-        for (var i =0;i<users.length;i++){
-            if(users[i].username===username && users[i].password===password){
-                res.send(users[i]);
-                return;
-            }
-        }
-        res.send('0');
+        model
+            .userModel
+            .findUserByCredentials(username, password)
+            .then(
+                function (users) {
+                    if(users) {
+                        res.json(users[0]);
+                    } else {
+                        res.send('0');
+                    }
+                },
+                function (error) {
+                    res.sendStatus(400).send(error);
+                }
+            );
     }
 
-    function findUserById(req,res){
-
-        var id = req.params.userId;
-        console.log(id);
-
-        for (var i =0;i<users.length;i++){
-            if(users[i]._id===id){
-                res.send(users[i]);
-                return;
-            }
-        }
-        res.send('0');
+    function findUserById(req, res) {
+        var userId = req.params.uid;
+        model
+            .userModel
+            .findUserById(userId)
+            .then(
+                function (user) {
+                    if(user) {
+                        res.send(user);
+                    } else {
+                        res.send('0');
+                    }
+                },
+                function (error) {
+                    res.sendStatus(400).send(error);
+                }
+            )
     }
 
-    function createUser(req,res) {
 
+    function createUser(req, res) {
         var user = req.body;
-        var newUserName = user.username;
-        var id = (new Date().getTime()).toString();
-
-        for(var name in users)
-        {
-            if(name.username === newUserName)
-            {
-                res.send('0');
-                return;
-            }
-        }
-        user._id = id;
-        users.push(user);
-        res.send(user);
-
+        model
+            .userModel
+            .createUser(user)
+            .then(
+                function(newUser) {
+                    res.send(newUser);
+                },
+                function (error) {
+                    res.sendStatus(400).send(error);
+                }
+            );
     }
 }

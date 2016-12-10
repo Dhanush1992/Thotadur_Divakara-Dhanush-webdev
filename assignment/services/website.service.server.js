@@ -36,11 +36,6 @@ module.exports = function (app) {
         console.log("here");
         var websiteId = req.params.websiteId;
 
-        //websites.forEach(function(result,index){
-          //  if(result["_id"] === websiteId){
-             //   websites.splice(index,1);
-            //}
-        //})
 
         for(var i in websites)
         {
@@ -53,23 +48,24 @@ module.exports = function (app) {
         res.send(200);
     }
 
-    function createWebsite(req,res){
-
+    function createWebsite(req, res) {
+        var uid = req.params.userId;
         var website = req.body;
-        // for(var wb in websites)
-        // {
-        //     if(websites[wb].name === website.name)
-        //     {
-        //         res.send('0');
-        //         return;
-        //     }
-        // }
-        website._id = (new Date().getTime()).toString();
-        websites.push(website);
-        //res.send(websites);
-        res.send(websites);
-
-
+        model
+            .websiteModel
+            .createWebsite(uid, website)
+            .then(function (website) {
+                    if(website){
+                        res.json(website);
+                    }
+                    else {
+                        res.send('0');
+                    }
+                },
+                function (error) {
+                    res.sendStatus(400).send(error);
+                }
+            );
     }
 
     function findWebsiteById(req,res) {
@@ -84,19 +80,12 @@ module.exports = function (app) {
             res.send('0');
     }
 
-    function findWebsitesForUser(req,res){
-        var uid = req.params.userId;
-        var result = [];
-        for(var w in websites) {
-            if(websites[w].developerId === uid) {
-                result.push(websites[w]);
-            }
-        }
-        if(result.length > 0){
-            res.send(result);
-            return;
-        }
-        res.send('0');
+    function findWebsitesForUser(req, res) {
+        model.websiteModel
+            .findWebsitesForUser(req.params.userId)
+            .then(function(websites){
+                res.json(websites);
+            });
     }
 
 
