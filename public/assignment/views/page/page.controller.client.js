@@ -11,8 +11,10 @@
         function init(){
             PageService
                 .findPageByWebsiteId(vm.websiteId)
-                .success(function(pages){
-                    vm.pages = pages;
+                .success(function(website){
+                    vm.pages = website.pages;
+                    console.log("Hello from pages");
+                    console.log(website.pages);
                 })
                 .error(function(){
 
@@ -21,6 +23,8 @@
         init();
 
     }
+
+
     function NewPageController($routeParams,$location,PageService) {
         var vm = this;
         vm.userId = $routeParams['uid'];
