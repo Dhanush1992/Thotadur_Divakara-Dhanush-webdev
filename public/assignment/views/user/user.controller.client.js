@@ -75,25 +75,26 @@
 
     function ProfileController($routeParams, UserService) {
         var vm = this;
-        var params = $routeParams;
-        vm.userId = params['uid']
-        console.log(vm.userId);
-        var user = UserService.findUserById(vm.userId);
-
-        if(user != null) {
-            vm.user = user;
-        }
-        vm.okayPressed = okayPressed;
-        function okayPressed() {
+        var userId = $routeParams.uid;
+        vm.updateUser = updateUser;
+        function init() {
             UserService
-                .updateUser(vm.userId,vm.user)
-                .success(function(){
-                    alert("Updated user details");
+                .findUserById(userId)
+                .success(function(user){
+                    console.log(user);
+                    if(user != '0') {
+                        vm.user = user;
+                        console.log(user);
+                    }
                 })
-                .error(function (){
+                .error(function(){
 
                 });
+        }
+        init();
 
+        function updateUser() {
+            UserService.updateUser(vm.user);
         }
     }
 })();

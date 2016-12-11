@@ -15,7 +15,7 @@ module.exports = function (app,model) {
 
     function updateUser(req, res) {
         var user = req.body;
-        var uid = req.params.uid;
+        var uid = req.params.userId;
         model
             .userModel
             .updateUser(uid, user)

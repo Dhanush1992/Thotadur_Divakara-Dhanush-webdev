@@ -21,8 +21,8 @@
 
         }
 
-        function updateWebsite(website) {
-            var url = "/api/website/"+website._id;
+        function updateWebsite(websiteId,website) {
+            var url = "/api/website/"+websiteId;
             return $http.put(url,website);
         }
 

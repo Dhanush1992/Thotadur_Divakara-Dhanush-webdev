@@ -6,18 +6,23 @@
 
 
         var api = {
-            "createUser"   : createUser,
-            "findUserById" : findUserById,
-            "findUserByUsername" : findUserByUsername,
-            "findUserByCredentials" : findUserByCredentials,
-            "updateUser" : updateUser,
-            "deleteUser" : deleteUser
+            createUser   : createUser,
+            findUserById : findUserById,
+            findCurrentUser:findCurrentUser,
+            findUserByUsername : findUserByUsername,
+            findUserByCredentials : findUserByCredentials,
+            updateUser : updateUser,
+            deleteUser : deleteUser
         };
         function findUserByCredentials(username, password) {
 
             var url = "/api/user?username="+username+"&password="+password;
             return $http.get(url);
 
+        }
+
+        function findCurrentUser() {
+            return $http.get("/api/user");
         }
 
          function createUser(user) {

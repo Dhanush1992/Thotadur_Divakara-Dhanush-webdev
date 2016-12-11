@@ -6,19 +6,19 @@
         .controller("EditWebsiteController", EditWebsiteController);
     function WebsiteListController($routeParams, WebsiteService) {
         var vm = this;
-        vm.userId = $routeParams["uid"];
+
         function init() {
+            vm.userId = $routeParams.uid;
             WebsiteService
                 .findWebsitesForUser(vm.userId)
-                .success(function (websites) {
-                    vm.websites = websites;
-
+                .success(function(user) {
+                    vm.websites = user.websites;
+                    console.log("hello");
+                    console.log(vm.websites);
                 })
-                .error(function () {
+                .error(function(err) {
 
                 });
-
-            //vm.websites = WebsiteService.findWebsitesForUser(vm.userId);
         }
         init();
     }
@@ -90,17 +90,18 @@
         vm.updateWebsite = updateWebsite;
         vm.deleteWebsite = deleteWebsite;
 
+
         function updateWebsite() {
-
             WebsiteService
-                .updateWebsite(vm.website)
-                .success(function () {
-                    $location.url("/user/"+vm.userId+"/website");
-                })
-                .error(function () {
+                .updateWebsite(vm.websiteId, vm.website)
+                .success(function(website) {
+                    if(website)
+                        $location.url("/user/"+vm.userId+"/website");
 
                 })
+                .error(function(err) {
 
+                });
         }
 
         function deleteWebsite() {
