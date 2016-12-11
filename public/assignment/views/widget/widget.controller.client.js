@@ -64,7 +64,7 @@
 
         function HeadingWidget(){
             var widgetSize = parseInt(vm.widget.size);
-            var widget = { widgetType: "HEADER", size: widgetSize, text: vm.widget.text };
+            var widget = { type: "HEADER", size: widgetSize, text: vm.widget.text };
             console.log(widget.size);
             WidgetService
                 .createWidget(vm.pageId, widget)
@@ -78,7 +78,7 @@
         }
 
         function ImageWidget() {
-            var widget = {name:vm.widget.name, widgetType: "IMAGE", text: vm.widget.text, width: vm.widget.width, url: vm.widget.url };
+            var widget = {name:vm.widget.name, type: "IMAGE", text: vm.widget.text, width: vm.widget.width, url: vm.widget.url };
             WidgetService
                 .createWidget(vm.pageId, widget)
                 .success(function(widgets){
@@ -92,7 +92,7 @@
         }
 
         function YoutubeWidget() {
-            var widget = {name:vm.widget.name, widgetType: "YOUTUBE", width: vm.widget.width, url: vm.widget.url };
+            var widget = {name:vm.widget.name, type: "YOUTUBE", width: vm.widget.width, url: vm.widget.url };
             WidgetService
                 .createWidget(vm.pageId, widget)
                 .success(function(widgets){

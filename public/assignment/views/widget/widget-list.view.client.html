@@ -23,8 +23,9 @@
 <div class="row">
     <div class="container">
         <div jga-sortable class="col-sm-12 widget-edit-parent">
-            <div ng-switch="widget.widgetType"
-                 ng-repeat="widget in model.widgets" class="widget-edit-parent">
+            <!--<div ng-switch="widget.widgetType"-->
+            <div ng-repeat="widget in model.widgets" class="widget-edit-parent"
+                 ng-switch="widget.type">
                 <div>
                     <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}" class="widget-edit-child">
                         <span class="glyphicon glyphicon-cog pull-right"></span>
