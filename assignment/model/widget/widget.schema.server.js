@@ -3,8 +3,8 @@
  */
 module.exports = function () {
     var mongoose = require("mongoose");
-    var WidgetModel = mongoose.Schema({
-        _page: {type: mongoose.Schema.Types.ObjectId, ref:"PageModel"},
+    var WidgetSchema = mongoose.Schema({
+        _page: {type: mongoose.Schema.Types.ObjectId, ref:"WebsiteModel"},
         type:  {type: String, enum: ['HEADER', 'IMAGE', 'YOUTUBE', 'HTML', 'TEXT']},
         name: String,
         text: String,
@@ -21,5 +21,5 @@ module.exports = function () {
         formatted: Boolean,
         dateCreated: {type: Date, default: Date.now}
     });
-    return WidgetModel;
+    return WidgetSchema;
 };

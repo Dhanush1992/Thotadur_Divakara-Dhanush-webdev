@@ -27,13 +27,15 @@ module.exports = function () {
 
     function createWidget(pageId, widget) {
         console.log("widget:"+widget.widgetType);
-        return WidgetModel.create(widget)
+        return WidgetModel
+            .create(widget)
             .then(function (widgetObj) {
-                return model.pageModel
+                return model
+                    .pageModel
                     .findPageById(pageId)
                     .then(function (pageObj) {
                         return findAllWidgetsForPage(pageId)
-                            .then(function () {
+                            .then(function (widgets) {
                                 pageObj.widgets.push(widgetObj._id);
                                 pageObj.save();
                                 widgetObj._page = pageObj._id;
