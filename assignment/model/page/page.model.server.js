@@ -50,8 +50,7 @@ module.exports = function () {
     }
 
     function findPageById(pageId) {
-        return PageModel
-            .findById(pageId);
+        return PageModel.findById(pageId);
     }
 
     function findAllWidgetsForPage(pageId) {

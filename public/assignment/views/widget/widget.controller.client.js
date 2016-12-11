@@ -11,16 +11,16 @@
         vm.pageId = $routeParams['pid'];
         vm.websiteId = $routeParams['wid'];
         vm.userId = $routeParams['uid'];
-        vm.widgetId = $routeParams['wgid'];
+        //vm.widgetId = $routeParams['wgid'];
 
         function init(){
             WidgetService
                 .findWidgetsByPageId(vm.pageId)
-                .success(function (widgets) {
+                .success(function (page) {
                     console.log("In Init");
-                    console.log( widgets);
-                    vm.widgets = widgets;
-                    $location.url("/user/" + vm.userId + "/website/"+vm.websiteId + "/page/" + vm.pageId + "/widget");
+                    console.log(page.widgets);
+                    vm.widgets = page.widgets;
+                    //$location.url("/user/" + vm.userId + "/website/"+vm.websiteId + "/page/" + vm.pageId + "/widget");
                 })
                 .error(function () {
                     
@@ -63,9 +63,8 @@
 
 
         function HeadingWidget(){
-            var id = (new Date().getTime()).toString();
             var widgetSize = parseInt(vm.widget.size);
-            var widget = {_id:id, widgetType: "HEADER", size: widgetSize, text: vm.widget.text };
+            var widget = { widgetType: "HEADER", size: widgetSize, text: vm.widget.text };
             console.log(widget.size);
             WidgetService
                 .createWidget(vm.pageId, widget)
@@ -79,8 +78,7 @@
         }
 
         function ImageWidget() {
-            var id = (new Date().getTime()).toString();
-            var widget = {_id:id, name:vm.widget.name, widgetType: "IMAGE", text: vm.widget.text, width: vm.widget.width, url: vm.widget.url };
+            var widget = {name:vm.widget.name, widgetType: "IMAGE", text: vm.widget.text, width: vm.widget.width, url: vm.widget.url };
             WidgetService
                 .createWidget(vm.pageId, widget)
                 .success(function(widgets){
@@ -94,8 +92,7 @@
         }
 
         function YoutubeWidget() {
-            var id = (new Date().getTime()).toString();
-            var widget = {_id:id, name:vm.widget.name, widgetType: "YOUTUBE", width: vm.widget.width, url: vm.widget.url };
+            var widget = {name:vm.widget.name, widgetType: "YOUTUBE", width: vm.widget.width, url: vm.widget.url };
             WidgetService
                 .createWidget(vm.pageId, widget)
                 .success(function(widgets){
