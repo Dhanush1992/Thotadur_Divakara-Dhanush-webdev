@@ -44,7 +44,7 @@ module.exports = function () {
         });
     }
     function findUserByUsername(username) {
-        return UserModel.find({username: username})
+        return UserModel.findOne({username: username})
     }
 
     function updateUser(userId, user) {

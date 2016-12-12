@@ -7,11 +7,101 @@ module.exports = function (app,model) {
         {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia"  },
         {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" } ];
 
-    app.post("/api/user",createUser);
+    //app.post("/api/user",createUser);
+    var passport = require('passport');
+    var LocalStrategy = require('passport-local').Strategy;
+    var bcrypt = require("bcrypt-nodejs");
+    var auth = authorized;
+    var session = require('express-session');
+    var cookieParser = require('cookie-parser');
+
+    app.use(session({
+        secret: 'this is a secret',
+        resave: true,
+        saveUninitialized: true
+    }));
+    app.use(cookieParser());
+    app.use(passport.initialize());
+    app.use(passport.session());
+
+
+    passport.use(new LocalStrategy(localStrategy));
+
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
+
     app.get("/api/user/:userId",findUserById);
-    app.get("/api/user",findUserByCredentials);
-    app.get("/api/user",findUserByUsername);
     app.put("/api/user/:userId",updateUser);
+
+
+
+    app.post('/api/login', passport.authenticate('local'), login);
+    app.post  ('/api/logout',logout);
+    app.post  ('/api/register',register);
+    app.get   ('/api/loggedin',loggedin);
+    app.get   ('/api/user',findUser);
+    //app.delete('/api/user/:id',deleteUser);
+
+
+
+
+    function login(req, res) {
+        var user = req.user;
+        res.json(user);
+    }
+
+    function logout(req, res) {
+        req.logOut();
+        res.send(200);
+    }
+
+    function loggedin(req, res) {
+        res.send(req.isAuthenticated() ? req.user : '0');
+    }
+
+    function serializeUser(user, done) {
+        done(null, user);
+    }
+
+    function deserializeUser(user, done) {
+        model
+            .userModel
+            .findUserById(user._id)
+            .then(
+                function(user){
+                    done(null, user);
+                },
+                function(err){
+                    done(err, null);
+                }
+            );
+    }
+
+    function localStrategy(username, password, done) {
+        model
+            .userModel
+            .findUserByUsername(username)
+            .then(
+                function(user) {
+                    // if the user exists, compare passwords with bcrypt.compareSync
+                    if(user && bcrypt.compareSync(password, user.password)) {
+                        return done(null, user);
+                    } else {
+                        return done(null, false);
+                    }
+                }
+            );
+    }
+
+    function authorized (req, res, next) {
+        if (!req.isAuthenticated()) {
+            res.send(401);
+        } else {
+            next();
+        }
+    }
+
+
 
     function updateUser(req, res) {
         var user = req.body;
@@ -71,6 +161,15 @@ module.exports = function (app,model) {
             );
     }
 
+    function findUser(req, res) {
+        if(req.query.username) {
+            if(req.query.password) findUserByCredentials(req, res);
+            else findUserByUsername(req, res);
+        } else {
+            res.send(req.user);
+        }
+    }
+
     function findUserById(req, res) {
         var userId = req.params.userId;
         model
@@ -91,18 +190,27 @@ module.exports = function (app,model) {
     }
 
 
-    function createUser(req, res) {
+
+    function register(req, res) {
         var user = req.body;
+        user.password = bcrypt.hashSync(user.password);
         model
             .userModel
             .createUser(user)
             .then(
-                function(newUser) {
-                    res.send(newUser);
+                function(user) {
+                    req.login(user, function(err) {
+                        if(err) {
+                            res.sendStatus(400).send(err);
+                        } else {
+                            res.send(user);
+                        }
+                    });
                 },
-                function (error) {
+                function(error) {
                     res.sendStatus(400).send(error);
                 }
             );
     }
+
 }
