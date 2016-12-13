@@ -1,0 +1,232 @@
+/* ==========================================================
+*
+! LESS Theme Builder
+* Project:	Vertica - Retina Ready Resume / CV & Portfolio
+*
+========================================================== */
+/*------------------------------------------------------------------
+[Table of contents]
+
+1. Colors
+2. General
+3. Tipography
+4. Page Loader 
+5. Header Colors
+6. Side Menu
+7. Profile Intro
+8. Vertical Timeline
+9. Section: Education and Work Experience
+10. Section: Skills
+11. Section: Portfolio
+12. Section: Contact
+13. Section: Thank you
+14. Footer
+-------------------------------------------------------------------*/
+/* ==========================================================
+! 1. Colors (EDIT THE COLORS BELOW)
+========================================================== */
+.color1 {
+  color: #fe4365;
+}
+.color2 {
+  color: #759c8a;
+}
+.color3 {
+  color: #e33b5a;
+}
+.font1 {
+  font-family: 'Open Sans', sans-serif;
+}
+.bold {
+  font-weight: bold;
+}
+.bg-cover {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+/* ==========================================================
+! 2. General
+========================================================== */
+body {
+  background-image: url('../../img/jessie-bg.jpg');
+  background-color: #759c8a;
+}
+h1,
+h2 {
+  color: #fe4365;
+}
+h3 {
+  color: #759c8a;
+}
+.btn-default {
+  background: #759c8a;
+  border: #759c8a;
+}
+.btn-default:hover {
+  background: #537a68 !important;
+}
+.btn-primary {
+  background: #fe4365;
+  border: #fe4365;
+}
+.btn-primary:hover {
+  background: #ed3254 !important;
+}
+.btn-secondary {
+  background: #e33b5a;
+  border: #e33b5a;
+}
+.btn-secondary:hover {
+  background: #d22a49 !important;
+}
+/* ==========================================================
+! 3. Tipography
+========================================================== */
+p {
+  color: #333333;
+}
+.intro-title1 {
+  color: #222222;
+  border-bottom: 1px solid #fe4365;
+}
+.intro-title2 {
+  color: #555555;
+}
+.section-title {
+  color: #648b79;
+}
+.section-item-title-1 {
+  color: #759c8a;
+}
+/* ==========================================================
+! 4. Page Loader 
+========================================================== */
+#page-loader {
+  background: #648b79;
+  color: #fe4365;
+}
+/* ==========================================================
+! 5. Header Colors
+========================================================== */
+.top-color {
+  background: #fe4365;
+}
+.top-color1 {
+  background: #fe4365;
+}
+.top-color2 {
+  background: #759c8a;
+}
+.top-color3 {
+  background: #e33b5a;
+}
+/* ==========================================================
+! 6. Side Menu
+========================================================== */
+.side-menu-button {
+  background: #333;
+  opacity: 0.9;
+}
+.side-menu {
+  background: #111;
+}
+.side-menu-nav li a:hover {
+  color: #fff;
+}
+.side-menu-nav li.active a {
+  color: #fff;
+}
+#side-menu-close {
+  color: #fff;
+}
+/* ==========================================================
+! 7. Profile Intro
+========================================================== */
+.profile-pic {
+  border: 5px solid #fe4365;
+}
+/* ==========================================================
+! 8. Vertical Timeline
+========================================================== */
+.timeline-wrap {
+  background: #fe4365;
+}
+.line-content {
+  color: #333333;
+}
+/* ==========================================================
+! 9. Section: Education and Work Experience
+========================================================== */
+.graduation-time,
+.job {
+  color: #777777;
+}
+/* ==========================================================
+! 10. Section: Skills
+========================================================== */
+.progress > .progress-completed {
+  color: #888;
+}
+.progress-bar {
+  background: #fe4365;
+}
+.progress-bar-2 {
+  background: #759c8a;
+}
+.progress-bar-3 {
+  background: #e33b5a;
+}
+/* ==========================================================
+! 11. Section: Portfolio
+========================================================== */
+.portfolio .line-content {
+  height: 255px;
+}
+.portfolio-item .hover-bg {
+  background: #dc2143;
+}
+.bx-prev,
+.bx-next {
+  background: #759c8a;
+}
+.bx-prev:hover,
+.bx-next:hover {
+  color: #fff;
+  background: #426957;
+}
+/* ==========================================================
+! 12. Section: Contact
+========================================================== */
+input.form-control,
+textarea.form-control {
+  background: #fe4365;
+  border: 0px;
+}
+.form-send {
+  background: #759c8a;
+  color: #fff;
+}
+.contact-subtitle-1 {
+  color: #759c8a;
+}
+.modal-content .modal-title {
+  color: #759c8a;
+}
+/* ==========================================================
+! Section: Thank you
+========================================================== */
+.thank-you {
+  color: #888888;
+}
+/* ==========================================================
+! 14. Footer
+========================================================== */
+#footer {
+  background: #e33b5a;
+  color: #fff;
+}
+#footer p {
+  color: #fff;
+}
