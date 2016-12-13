@@ -15,13 +15,18 @@ module.exports = function () {
         findUserByUsername: findUserByUsername,
         findWebsitesForUser: findWebsitesForUser,
         removeUser: removeUser,
-        setModel: setModel
+        setModel: setModel,
+        findUserByFacebookId  : findUserByFacebookId
     };
     return api;
 
 
     function setModel(_model) {
         model = _model;
+    }
+
+    function findUserByFacebookId(facebookId) {
+        return UserModel.findOne({'facebook.id': facebookId});
     }
 
 
