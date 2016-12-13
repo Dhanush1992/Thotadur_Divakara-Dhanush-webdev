@@ -12,7 +12,7 @@ module.exports = function (app,model) {
     var LocalStrategy = require('passport-local').Strategy;
     var FacebookStrategy = require('passport-facebook').Strategy;
     var bcrypt = require("bcrypt-nodejs");
-    var auth = authorized;
+    // var auth = authorized;
     var session = require('express-session');
     var cookieParser = require('cookie-parser');
 

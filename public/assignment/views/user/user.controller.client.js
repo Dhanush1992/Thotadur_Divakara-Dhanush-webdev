@@ -11,7 +11,11 @@
 
         function login(username,password) {
             if((!username)||(!password)){
-                vm.error = "No username or password"
+                vm.condition = true;
+                if((!username) && (!password))vm.error = "username and password"
+                else if(!username) vm.error = "username"
+                else if(!password) vm.error = "password"
+
             }
             else{
                 UserService
@@ -19,7 +23,7 @@
                     .success(function (user) {
                         if(user == '0')
                         {
-                            //alert("user not found");
+                            vm.condition = true;
                             vm.error = "username/password does not exist/match"
                         }
                         else
@@ -31,7 +35,8 @@
                     })
                     .error(function (error) {
                         //alert("Username/Password not found");
-                        alert(vm.error);
+                        vm.condition = true;
+                        vm.error = "username/password does not exist/match"
                     });
             }
 
@@ -43,23 +48,25 @@
         vm.register  = register;
         function register(user){
             if(!user){
-                vm.error = "No user";
+                vm.condition = true;
+                vm.error = "user";
             }
             else if(!user.username){
-                alert("Please enter the username you want to create");
-                vm.error = "no username";
+                vm.condition = true;
+                vm.error = "username";
             }
             else if(!user.password){
-                alert("Please enter a password field");
-                vm.error = "no password";
+                vm.condition = true;
+                vm.error = "password";
             }
             else if(!user.verifyPassword){
-                alert("Passwords do not match");
-                vm.error = "passwords do not match";
+                vm.condition = true;
+                vm.error = "confirm password";
 
             }
             else if(user.verifyPassword !== user.password){
-
+                vm.condition = true;
+                vm.error = "Passwords do not match";
             }else {
                 UserService
                     .register(user)
@@ -70,7 +77,8 @@
                         }
                     })
                     .error(function(err) {
-
+                        vm.condition = true;
+                        vm.error = "Cannot create user, please use a different username/password"
                     });
             }
 
