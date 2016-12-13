@@ -21,9 +21,12 @@
 <div class="container">
     
     <div class="anchor-padding-top">
+        <div class="alert alert-danger" role="alert" ng-if="model.condition">
+            {{model.error}} required
+        </div>
         <form>
             <label for="inputName">Name</label>
-            <input type="text" ng-model="model.page.name"  class="form-control" placeholder="Page Name" id="inputName">
+            <input type="text" ng-model="model.page.name"  class="form-control" placeholder="Page Name" id="inputName" required>
             <label for="inputTitle">Title</label>
             <input type="text" ng-model="model.page.description" class="form-control" placeholder="Page Title" id="inputTitle">
             <a ng-click="model.deletePage()" class="form-control anchor-padding btn btn-danger" id="delete">Delete</a>

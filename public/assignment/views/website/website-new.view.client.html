@@ -29,9 +29,12 @@
     </div>
 </nav>
 
+
+
 <div class="container">
     <div class="row">    
         <div class="col-xs-4 anchor-padding-top hidden-xs">
+
             <div ng-repeat="website in model.websites" class="row anchor-padding">
                 <a href="#/user/{{model.userId}}/website/{{website._id}}">{{website.name}}</a>
                 <a href="#/user/{{model.userId}}/website/{{website._id}}" class="pull-right">
@@ -42,11 +45,14 @@
         </div>
 
         <div class="col-xs-12 col-sm-8 anchor-padding-top">
+            <div class="alert alert-danger" role="alert" ng-if="model.condition">
+                {{model.error}} required
+            </div>
             <form>
                 <label for="inputName">Name</label>
-                <input type="text" ng-model="model.website.name" class="form-control" placeholder="Name" id="inputName">
+                <input type="text" ng-model="model.website.name" class="form-control" placeholder="Name" id="inputName" required>
                 <label for="inputDescription">Description</label>
-                <textarea class="form-control" ng-model="model.website.description"  placeholder="Description" id="inputDescription"></textarea>
+                <textarea class="form-control" ng-model="model.website.description"  placeholder="Description" id="inputDescription" required></textarea>
             </form>
         </div>
     </div>

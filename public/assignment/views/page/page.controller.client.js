@@ -60,10 +60,16 @@
             //
             // id = id.toString();
 
+
             var newPage = {};
             newPage.name = name;
             //newPage._id = id;
             newPage.description = description;
+            if(!vm.page||!vm.page.name){
+                vm.condition = true;
+                vm.error = "Page name";
+                return;
+            }
             PageService
                 .createPage(vm.websiteId,newPage)
                 .success(function(pages){
@@ -106,26 +112,40 @@
         vm.deletePage = deletePage;
 
         function updatePage(){
-            PageService
-                .updatePage(vm.pageId,vm.page)
-                .success(function(page){
-                    vm.page = page;
-                    $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
-                })
-                .error(function(){
+            if(!vm.page||!vm.page.name){
+                vm.condition = true;
+                vm.error = "Page name";
+                return;
+            }else{
+                PageService
+                    .updatePage(vm.pageId,vm.page)
+                    .success(function(page){
+                        vm.page = page;
+                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+                    })
+                    .error(function(){
 
-                });
+                    });
+            }
+
         }
 
         function deletePage(){
-            PageService
-                .deletePage(vm.pageId)
-                .success(function(res){
-                    $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
-                })
-                .error(function(){
+            if(!vm.page||!vm.page.name){
+                vm.condition = true;
+                vm.error = "Page name";
+                return;
+            }else{
+                PageService
+                    .deletePage(vm.pageId)
+                    .success(function(res){
+                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+                    })
+                    .error(function(){
 
-                });
+                    });
+            }
+
 
 
 

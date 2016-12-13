@@ -45,9 +45,12 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-8 anchor-padding-top">
+            <div class="alert alert-danger" role="alert" ng-if="model.condition">
+                {{model.error}} required
+            </div>
             <form>
                 <label for="inputWebsiteName">Website Name</label>
-                <input type="text" ng-model="model.website.name" value="Blogger" class="form-control" placeholder="Name" id="inputWebsiteName">
+                <input type="text" ng-model="model.website.name" value="Blogger" class="form-control" placeholder="Name" id="inputWebsiteName" required>
                 <label for="inputWebsiteDescription">Website Description</label>
                 <textarea class="form-control" ng-model="model.website.description" rows="7" placeholder="Description" id="inputWebsiteDescription">Blogger is a blog-publishing service that allows multi-user blogs with time-stamped entries. It was developed by Pyra Labs, which was bought by Google in 2003. Generally, the blogs are hosted by Google at a subdomain of blogspot.com. Blogs can also be hosted in the registered custom domain of the blogger (like www.example.com).A user can have up to 100 blogs per account.</textarea>
                 <a ng-click="model.deleteWebsite()" class="form-control anchor-padding btn btn-danger" id="delete">Delete</a>

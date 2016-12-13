@@ -31,7 +31,6 @@
             WebsiteService
                 .findWebsitesForUser(vm.userId)
                 .success(function (websites) {
-                    console.log(websites);
                     vm.websites = websites;
                 })
                 .error(function () {
@@ -47,6 +46,12 @@
             // newWebsite.name = name;
             //newWebsite.developerId = vm.userId;
             // newWebsite.description = description;
+
+            if(!vm.website||!vm.website.name){
+                vm.condition = true;
+                vm.error = "Name"
+                return;
+            }
             WebsiteService
                 .createWebsite(vm.userId,vm.website)
                 //.success(function (website){
@@ -55,6 +60,8 @@
                 })
                 .error(function () {
                     //handle this
+                    vm.condition = true
+                    vm.error = "Cannot create website"
                 });
 
         }
@@ -92,20 +99,31 @@
 
 
         function updateWebsite() {
-            WebsiteService
-                .updateWebsite(vm.websiteId, vm.website)
-                .success(function(website) {
-                    if(website)
-                        $location.url("/user/"+vm.userId+"/website");
+            if(!vm.website||!vm.website.name){
+                vm.condition = true;
+                vm.error = "Website name";
+                return;
+            }else{
+                WebsiteService
+                    .updateWebsite(vm.websiteId, vm.website)
+                    .success(function(website) {
+                        if(website)
+                            $location.url("/user/"+vm.userId+"/website");
 
-                })
-                .error(function(err) {
+                    })
+                    .error(function(err) {
 
-                });
+                    });
+            }
+
         }
 
         function deleteWebsite() {
-
+            if(!vm.website||!vm.website.name){
+                vm.condition = true;
+                vm.error = "Website name";
+                return;
+            }
             WebsiteService
                 .deleteWebsite(vm.websiteId)
                 .success(function () {
