@@ -39,8 +39,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="346" column="53" selection-start-line="346" selection-start-column="53" selection-end-line="346" selection-end-column="53" />
+            <state relative-caret-position="285">
+              <caret line="186" column="41" selection-start-line="186" selection-start-column="41" selection-end-line="186" selection-end-column="41" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#li#2;n#ul#0;n#div#0;n#div#2;n#div#2;n#section#3;n#div#0;n#div#2;n#div#1;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#li#0;n#ul#0;n#div#0;n#div#2;n#div#3;n#section#3;n#div#0;n#div#2;n#div#1;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -418,7 +418,7 @@
       <workItem from="1481414092213" duration="13046000" />
       <workItem from="1481467668108" duration="24043000" />
       <workItem from="1481592752795" duration="56000" />
-      <workItem from="1481593163670" duration="24396000" />
+      <workItem from="1481593163670" duration="24865000" />
     </task>
     <task id="LOCAL-00001" summary="Grouping of pages, initialized webappmaker in app.js and config.js">
       <created>1476923820028</created>
@@ -581,11 +581,18 @@
       <option name="project" value="LOCAL" />
       <updated>1481729940815</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="added social media links">
+      <created>1481732181543</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1481732181543</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="211689000" />
+    <option name="totallyTimeSpent" value="212158000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -675,7 +682,8 @@
     <MESSAGE value="Form validation complete for all pages" />
     <MESSAGE value="UPdated personal page" />
     <MESSAGE value="added project links" />
-    <option name="LAST_COMMIT_MESSAGE" value="added project links" />
+    <MESSAGE value="added social media links" />
+    <option name="LAST_COMMIT_MESSAGE" value="added social media links" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1083,8 +1091,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="346" column="53" selection-start-line="346" selection-start-column="53" selection-end-line="346" selection-end-column="53" />
+        <state relative-caret-position="285">
+          <caret line="186" column="41" selection-start-line="186" selection-start-column="41" selection-end-line="186" selection-end-column="41" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#li#2;n#ul#0;n#div#0;n#div#2;n#div#2;n#section#3;n#div#0;n#div#2;n#div#1;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#li#0;n#ul#0;n#div#0;n#div#2;n#div#3;n#section#3;n#div#0;n#div#2;n#div#1;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
